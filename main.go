@@ -40,4 +40,10 @@ func main() {
 
 	time.Sleep(1 * time.Second)
 	fmt.Println(functions.PreviousPrime(7))
+
+	time.Sleep(1 * time.Second)
+	functions.Compare("flowers", "books")
+
+	time.Sleep(1 * time.Second)
+	functions.Doop()
 }
