@@ -46,4 +46,7 @@ func main() {
 
 	time.Sleep(1 * time.Second)
 	functions.Doop()
+
+	time.Sleep(1 * time.Second)
+	functions.FoldInt(functions.Add, []int{1, 2, 3}, 96)
 }
