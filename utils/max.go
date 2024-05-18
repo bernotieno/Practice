@@ -1,11 +1,11 @@
-package main
+package functions
 
 import "fmt"
 
-func Max(a []int) int {
+func Max(a []int) {
 	// Check if the input slice is empty
 	if len(a) == 0 {
-		return 0 // If the slice is empty, return 0 as there is no maximum value
+		fmt.Println(0) // If the slice is empty, return 0 as there is no maximum value
 	}
 
 	// Initialize max variable with the first element of the slice
@@ -22,11 +22,5 @@ func Max(a []int) int {
 	}
 
 	// After iterating over all elements, return the maximum value found
-	return max
-}
-
-func main() {
-	a := []int{23, 123, 1, 11, 567, 93}
-	max := Max(a)
 	fmt.Println(max)
 }

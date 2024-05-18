@@ -1,8 +1,8 @@
-package main
+package functions
 
-import "github.com/01-edu/z01"
+import "fmt"
 
-func Rot13(s string) string {
+func Rot13(s string) {
 	var result string
 	for _, char := range s {
 		if (char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z') {
@@ -17,14 +17,5 @@ func Rot13(s string) string {
 			result += string(char)
 		}
 	}
-	return result
-}
-
-func main() {
-	result := Rot13("Hello! How are You?")
-
-	for _, r := range result {
-		z01.PrintRune(r)
-	}
-	z01.PrintRune('\n')
+	fmt.Println(result)
 }

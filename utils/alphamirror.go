@@ -1,19 +1,9 @@
-package main
+package functions
 
-import (
-	"fmt"
-)
-
-func main() {
-	// Test the function with a sample string
-	original := "a"
-	encrypted := Alphamirror(original)
-	fmt.Println("Original:", original)
-	fmt.Println("Encrypted:", encrypted)
-}
+import "fmt"
 
 // Function to perform alphamirror encryption
-func Alphamirror(s string) string {
+func Alphamirror(s string) {
 	// Initialize a variable to store the encrypted string
 	var result string
 
@@ -35,5 +25,5 @@ func Alphamirror(s string) string {
 		}
 	}
 
-	return result
+	fmt.Println(result)
 }

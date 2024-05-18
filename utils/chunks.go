@@ -1,10 +1,10 @@
-package main // Declares the main package
+package functions // Declares the main package
 
 import (
 	"fmt" // Imports the fmt package for formatted I/O
 )
 
-func chunkSlice(slice []int, chunkSize int) [][]int {
+func ChunkSlice(slice []int, chunkSize int) {
 	var chunks [][]int // Declares a variable to hold the chunks
 
 	// Iterates over the slice in chunks of specified size
@@ -18,12 +18,5 @@ func chunkSlice(slice []int, chunkSize int) [][]int {
 		chunks = append(chunks, slice[i:end]) // Appends the current chunk to the chunks slice
 	}
 
-	return chunks // Returns the slice of chunks
-}
-
-func main() {
-	mySlice := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10} // Declares a sample slice
-	chunkSize := 2                                  // Specifies the size of each chunk
-	chunks := chunkSlice(mySlice, chunkSize)        // Calls chunkSlice function to chunk the slice
-	fmt.Println(chunks)                             // Prints the resulting chunks
+	fmt.Println(chunks) // Returns the slice of chunks
 }

@@ -1,4 +1,4 @@
-package main
+package functions
 
 import (
 	"os"
@@ -6,7 +6,7 @@ import (
 	"github.com/01-edu/z01"
 )
 
-func main() {
+func Revparam() {
 	// Loop through the arguments in reverse order
 	for i := len(os.Args) - 1; i > 0; i-- {
 		// Print each argument

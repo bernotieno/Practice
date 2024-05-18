@@ -1,4 +1,4 @@
-package main
+package functions
 
 import (
 	"os"
@@ -6,7 +6,7 @@ import (
 	"github.com/01-edu/z01"
 )
 
-func main() {
+func Countparams() {
 	count := 0
 
 	for i := 1; i < len(os.Args); i++ {
