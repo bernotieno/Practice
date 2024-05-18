@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"time"
 
 	functions "functions/utils"
@@ -36,4 +37,7 @@ func main() {
 
 	time.Sleep(1 * time.Second)
 	functions.Firstparam()
+
+	time.Sleep(1 * time.Second)
+	fmt.Println(functions.PreviousPrime(7))
 }
