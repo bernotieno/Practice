@@ -52,4 +52,7 @@ func main() {
 
 	time.Sleep(1 * time.Second)
 	functions.Tabmult()
+
+	time.Sleep(1 * time.Second)
+	functions.Replace()
 }
