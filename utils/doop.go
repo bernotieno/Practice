@@ -1,64 +1,125 @@
 package functions
 
 import (
-	"fmt"
 	"os"
-	"strconv"
+
+	"github.com/01-edu/z01"
 )
 
+func isDigit(r rune) bool {
+	return '0' <= r && r <= '9' || r == '-' || r == '+'
+}
+
+func ParseInt(s string) (int64, bool) {
+	var result int64
+	var neg bool
+	for _, char := range s {
+		if char == '-' {
+			neg = !neg
+		} else if isDigit(char) {
+			result = result*10 + int64(char-'0')
+		} else {
+			return 0, false // Invalid input
+		}
+	}
+	if neg {
+		result = -result
+	}
+	return result, true
+}
+
 func Doop() {
-	// Check if the number of command-line arguments is exactly 4
-	// (program name + 3 arguments). If not, exit the program.
 	if len(os.Args) != 4 {
 		return
 	}
 
-	// Parse the first argument as a 64-bit integer
-	val1, err1 := strconv.ParseInt(os.Args[1], 10, 64)
-	// Store the second argument as the operator
+	val1, err1 := ParseInt(os.Args[1])
 	operator := os.Args[2]
-	// Parse the third argument as a 64-bit integer
-	val2, err2 := strconv.ParseInt(os.Args[3], 10, 64)
+	val2, err2 := ParseInt(os.Args[3])
 
-	// If there are errors in parsing either the first or third argument,
-	// exit the program.
-	if err1 != nil || err2 != nil {
+	if !err1 || !err2 {
 		return
 	}
 
-	// Initialize a variable to store the result of the operation
 	var result int64
 
-	// Perform the operation based on the operator
 	switch operator {
 	case "+":
-		// Addition
 		result = val1 + val2
 	case "-":
-		// Subtraction
 		result = val1 - val2
 	case "*":
-		// Multiplication
 		result = val1 * val2
 	case "/":
-		// Division - Check for division by zero
 		if val2 == 0 {
-			fmt.Println("No division by 0")
+			z01.PrintRune('N')
+			z01.PrintRune('o')
+			z01.PrintRune(' ')
+			z01.PrintRune('d')
+			z01.PrintRune('i')
+			z01.PrintRune('v')
+			z01.PrintRune('i')
+			z01.PrintRune('s')
+			z01.PrintRune('i')
+			z01.PrintRune('o')
+			z01.PrintRune('n')
+			z01.PrintRune(' ')
+			z01.PrintRune('b')
+			z01.PrintRune('y')
+			z01.PrintRune(' ')
+			z01.PrintRune('0')
+			z01.PrintRune('\n')
 			return
 		}
 		result = val1 / val2
 	case "%":
-		// Modulo - Check for modulo by zero
 		if val2 == 0 {
-			fmt.Println("No modulo by 0")
+			z01.PrintRune('N')
+			z01.PrintRune('o')
+			z01.PrintRune(' ')
+			z01.PrintRune('m')
+			z01.PrintRune('o')
+			z01.PrintRune('d')
+			z01.PrintRune('u')
+			z01.PrintRune('l')
+			z01.PrintRune('o')
+			z01.PrintRune(' ')
+			z01.PrintRune('b')
+			z01.PrintRune('y')
+			z01.PrintRune(' ')
+			z01.PrintRune('0')
+			z01.PrintRune('\n')
 			return
 		}
 		result = val1 % val2
 	default:
-		// If the operator is not recognized, exit the program
 		return
 	}
 
-	// Print the result of the operation
-	fmt.Println(result)
+	for _, char := range itoa(result) {
+		z01.PrintRune(char)
+	}
+	z01.PrintRune('\n')
+}
+
+func itoa(n int64) string {
+	var result string
+	var neg bool
+
+	if n < 0 {
+		neg = true
+		n = -n
+	}
+
+	for n > 0 {
+		digit := n % 10
+		result = string(digit+'0') + result
+		n /= 10
+	}
+
+	if neg {
+		result = "-" + result
+	}
+
+	return result
 }
