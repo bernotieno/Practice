@@ -1,6 +1,8 @@
 package functions
 
-import "fmt"
+import (
+	"github.com/01-edu/z01"
+)
 
 // Function to perform alphamirror encryption
 func Alphamirror(s string) {
@@ -25,5 +27,8 @@ func Alphamirror(s string) {
 		}
 	}
 
-	fmt.Println(result)
+	for _, char := range result {
+		z01.PrintRune(char)
+	}
+	z01.PrintRune('\n')
 }
