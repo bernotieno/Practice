@@ -5,6 +5,8 @@ import (
 	"time"
 
 	functions "functions/utils"
+
+	"github.com/01-edu/z01"
 )
 
 func main() {
@@ -58,4 +60,8 @@ func main() {
 
 	time.Sleep(1 * time.Second)
 	fmt.Println(functions.WordMatch("hello", "hdbdefiufblxydgsildo"))
+
+	time.Sleep(1 * time.Second)
+	z01.PrintRune((functions.Nrune("hello", 5)))
+	z01.PrintRune('\n')
 }
