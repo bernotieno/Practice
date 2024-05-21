@@ -24,25 +24,25 @@ cd Practice
 Do the following if you want to run the programs inside the repository :
 
 ```
-/Practice$ cd "name of the folder"
+ cd "name of the folder"
 ```
 Then now run the actual file in the folder :
 
 ```
-/Practice/ "folder name"$ go run .
+ go run .
 ```
 
 ### Example
 Openning the alphamirror folder :
 
 ```
-/Practice$ cd alphamirror/
+ cd alphamirror/
 ```
 
 Run the program inside:
 
 ```
-/Practice/alphamirrror$ go run .
+ go run .
 ```
 
 
