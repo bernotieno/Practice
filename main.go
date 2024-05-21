@@ -64,4 +64,6 @@ func main() {
 	time.Sleep(1 * time.Second)
 	z01.PrintRune((functions.Nrune("hello", 5)))
 	z01.PrintRune('\n')
+
+	functions.FirstRune("love")
 }
