@@ -32,6 +32,8 @@ Then now run the actual file in the folder :
  go run .
 ```
 
+To run more in the repository, follow the above instruction on running with specific folder.
+
 ### Example
 Openning the alphamirror folder :
 
@@ -45,7 +47,9 @@ Run the program inside:
  go run .
 ```
 
+## Author
 
+[Bernad Okumu](https://github.com/bernotieno/Practice.git)
 
 
 
