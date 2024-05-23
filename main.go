@@ -65,5 +65,12 @@ func main() {
 	z01.PrintRune((functions.Nrune("hello", 5)))
 	z01.PrintRune('\n')
 
+	time.Sleep(1 * time.Second)
 	functions.FirstRune("love")
+
+	time.Sleep(1 * time.Second)
+	functions.LastRune("love")
+
+	time.Sleep(1 * time.Second)
+	functions.Lastword()
 }
