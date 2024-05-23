@@ -6,27 +6,17 @@ package main
 
 import "github.com/01-edu/z01"
 
-func printInt(n int) {
-	// Handle zero case separately
-	if n == 0 {
-		z01.PrintRune('0')
-		z01.PrintRune('\n')
+func printDigits(n int) {
+	// base case just one digit
+	if n < 10 {
+		z01.PrintRune('0' + rune(n))
 		return
 	}
 
-	// Convert integer to slice of runes (characters)
-	var digits []rune
-	for n > 0 {
-		digit := n % 10
-		digits = append([]rune{rune(digit + '0')}, digits...) // Prepend digit to the slice
-		n /= 10
-	}
-
-	// Print each rune
-	for _, r := range digits {
-		z01.PrintRune(r)
-	}
-	z01.PrintRune('\n')
+	// case 2 more than 1 digit
+	// recursion to print the digits except the last one
+	printDigits(n / 10)
+	z01.PrintRune('0' + rune(n%10))
 }
 
 func ReduceInt(a []int, f func(int, int) int) {
@@ -40,7 +30,8 @@ func ReduceInt(a []int, f func(int, int) int) {
 	}
 
 	// Convert the integer accumulator to a string and print each character
-	printInt(acc)
+	printDigits(acc)
+	z01.PrintRune('\n')
 }
 
 func main() {
