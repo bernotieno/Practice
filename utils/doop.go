@@ -6,26 +6,22 @@ import (
 	"github.com/01-edu/z01"
 )
 
-func isDigit(r rune) bool {
-	return '0' <= r && r <= '9' || r == '-' || r == '+'
-}
-
-func ParseInt(s string) (int64, bool) {
-	var result int64
-	var neg bool
-	for _, char := range s {
-		if char == '-' {
-			neg = !neg
-		} else if isDigit(char) {
-			result = result*10 + int64(char-'0')
-		} else {
-			return 0, false // Invalid input
+func Atoi(s string) int {
+	result := 0
+	sign := 1
+	for i, char := range s {
+		if i == 0 && char == '-' {
+			sign = -1
+			continue
+		} else if i == 0 && char == '+' {
+			continue
 		}
+		if char < '0' || char > '9' {
+			return 0
+		}
+		result = result*10 + int(char-'0')
 	}
-	if neg {
-		result = -result
-	}
-	return result, true
+	return result * sign
 }
 
 func Doop() {
@@ -33,15 +29,15 @@ func Doop() {
 		return
 	}
 
-	val1, err1 := ParseInt(os.Args[1])
+	val1 := Atoi(os.Args[1])
 	operator := os.Args[2]
-	val2, err2 := ParseInt(os.Args[3])
+	val2 := Atoi(os.Args[3])
 
-	if !err1 || !err2 {
+	var result int
+
+	if val1 < -9223372036854775808 || val1 > 9223372036854775807 {
 		return
 	}
-
-	var result int64
 
 	switch operator {
 	case "+":
@@ -102,7 +98,7 @@ func Doop() {
 	z01.PrintRune('\n')
 }
 
-func itoa(n int64) string {
+func itoa(n int) string {
 	var result string
 	var neg bool
 
@@ -113,7 +109,7 @@ func itoa(n int64) string {
 
 	for n > 0 {
 		digit := n % 10
-		result = string(digit+'0') + result
+		result = string(rune(digit+'0')) + result
 		n /= 10
 	}
 
@@ -123,3 +119,52 @@ func itoa(n int64) string {
 
 	return result
 }
+
+// package functions
+
+// import (
+// 	"fmt"
+// 	"os"
+// 	"strconv"
+// )
+
+// func Doop() {
+// 	if len(os.Args) != 4 {
+// 		return
+// 	}
+
+// 	val1, err1 := strconv.ParseInt(os.Args[1], 10, 64)
+// 	operator := os.Args[2]
+// 	val2, err2 := strconv.ParseInt(os.Args[3], 10, 64)
+
+// 	if err1 != nil || err2 != nil {
+// 		return
+// 	}
+
+// 	var result int64
+
+// 	switch operator {
+// 	case "+":
+// 		result = val1 + val2
+// 	case "-":
+// 		result = val1 - val2
+// 	case "*":
+// 		result = val1 * val2
+// 	case "/":
+// 		if val2 == 0 {
+// 			fmt.Println("No division by 0")
+// 			return
+// 		}
+// 		result = val1 / val2
+// 	case "%":
+// 		if val2 == 0 {
+// 			fmt.Println("No modulo by 0")
+// 			return
+// 		}
+// 		result = val1 % val2
+// 	default:
+// 		return
+// 	}
+
+// 	fmt.Println(result)
+// }
