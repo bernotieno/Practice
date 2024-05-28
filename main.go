@@ -11,15 +11,6 @@ import (
 
 func main() {
 	time.Sleep(1 * time.Second)
-	functions.Alphamirror("a")
-
-	time.Sleep(1 * time.Second)
-	functions.Alternate()
-
-	time.Sleep(1 * time.Second)
-	functions.ChunkSlice([]int{123, 234, 635, 34, 45, 44, 33, 24, 8659, 56, 46}, 3)
-
-	time.Sleep(1 * time.Second)
 	functions.Countparams()
 
 	time.Sleep(1 * time.Second)
@@ -70,4 +61,7 @@ func main() {
 
 	time.Sleep(1 * time.Second)
 	functions.Lastword()
+
+	time.Sleep(1 * time.Second)
+	functions.Printbits()
 }
