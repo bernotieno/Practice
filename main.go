@@ -26,7 +26,7 @@ func main() {
 	functions.Max([]int{23, 4, 27, 58, 47})
 
 	time.Sleep(1 * time.Second)
-	functions.Reduceint([]int{23, 4, 27, 58, 47})
+	functions.Reduce()
 
 	time.Sleep(1 * time.Second)
 	functions.Revparam()
@@ -67,9 +67,6 @@ func main() {
 
 	time.Sleep(1 * time.Second)
 	functions.FirstRune("love")
-
-	time.Sleep(1 * time.Second)
-	functions.LastRune("love")
 
 	time.Sleep(1 * time.Second)
 	functions.Lastword()
