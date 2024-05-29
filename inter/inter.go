@@ -1,8 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/01-edu/z01"
 )
 
 func main() {
@@ -12,24 +13,23 @@ func main() {
 
 	str1 := os.Args[1]
 	str2 := os.Args[2]
+	seen := make(map[rune]bool)
+	exist := make(map[rune]bool)
+	inter := ""
 
-	chars := make(map[rune]bool)
-	ans := make([]rune, 0, len(str1))
+	for _, char := range str2 {
+		exist[char] = true
+	}
 
-	for _, ch := range str1 {
-		if _, oK := chars[ch]; !oK && containsRune(str2, ch) {
-			chars[ch] = true
-			ans = append(ans, ch)
+	for _, char := range str1 {
+		if exist[char] && !seen[char] {
+			seen[char] = true
+			inter += string(char)
 		}
 	}
-	fmt.Println(string(ans))
-}
 
-func containsRune(s string, r rune) bool {
-	for _, char := range s {
-		if char == r {
-			return true
-		}
+	for _, c := range inter {
+		z01.PrintRune(c)
 	}
-	return false
+	z01.PrintRune('\n')
 }
