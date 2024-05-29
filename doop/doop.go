@@ -6,116 +6,88 @@ import (
 	"github.com/01-edu/z01"
 )
 
-const (
-	maxInt = 9223372036854775807
-	minInt = -9223372036854775808
-)
-
-func Atoi(s string) int {
-	result := 0
-	sign := 1
-
-	for i, char := range s {
-		if i == 0 && char == '-' {
-			sign = -1
-			continue
-		} else if i == 0 && char == '+' {
-			continue
-		}
-		if char < '0' || char > '9' {
-			return 0
-		}
-
-		digit := int(char - '0')
-
-		// Check for overflow before multiplying and adding
-		if result > (maxInt-digit)/10 {
-			if sign == 1 {
-				return maxInt
-			} else {
-				return minInt
-			}
-		}
-		result = result*10 + digit
-	}
-
-	return result * sign
-}
-
-func Doop() {
+func main() {
 	if len(os.Args) != 4 {
 		return
 	}
 
-	val1 := Atoi(os.Args[1])
+	value1 := Atoi(os.Args[1])
 	operator := os.Args[2]
-	val2 := Atoi(os.Args[3])
+	value2 := Atoi(os.Args[3])
 
-	var result int
-
-	switch operator {
-	case "+":
-		if (val2 > 0 && val1 > maxInt-val2) || (val2 < 0 && val1 < minInt-val2) {
-			return
-		}
-		result = val1 + val2
-	case "-":
-		if (val2 < 0 && val1 > maxInt+val2) || (val2 > 0 && val1 < minInt+val2) {
-			return
-		}
-		result = val1 - val2
-	case "*":
-		if val2 != 0 && ((val1 > maxInt/val2 && val2 > 0) || (val1 < minInt/val2 && val2 < 0)) {
-			return
-		}
-
-		result = val1 * val2
-	case "/":
-		if val2 == 0 {
-			return
-		}
-		result = val1 / val2
-	case "%":
-		if val2 == 0 {
-			return
-		}
-		result = val1 % val2
-	default:
+	if (value1 >= 9223372036854775807 || value1 <= -9223372036854775807) || (value2 >= 9223372036854775807 || value2 <= -9223372036854775807) {
 		return
 	}
 
-	for _, char := range itoa(result) {
-		z01.PrintRune(char)
+	var result int
+	switch operator {
+	case "+":
+		result = value1 + value2
+	case "-":
+		result = value1 - value2
+	case "*":
+		result = value1 * value2
+	case "/":
+		if value2 == 0 {
+			word := "No division by 0"
+			for _, c := range word {
+				z01.PrintRune(c)
+			}
+			z01.PrintRune('\n')
+			return
+		}
+		result = value1 / value2
+	case "%":
+		if value2 == 0 {
+			word := "No modulo by 0"
+			for _, c := range word {
+				z01.PrintRune(c)
+			}
+			z01.PrintRune('\n')
+			return
+		}
+		result = value1 % value2
+	default:
+		return
+	}
+	r := Itoa(int(result))
+	for _, c := range r {
+		z01.PrintRune(c)
 	}
 	z01.PrintRune('\n')
 }
 
-func itoa(n int) string {
+func Itoa(n int) string {
 	if n == 0 {
 		return "0"
-	}
-
-	var result string
-	var neg bool
-
-	if n < 0 {
-		neg = true
+	} else if n < 0 {
+		z01.PrintRune('-')
 		n = -n
 	}
 
+	var digits []rune
 	for n > 0 {
 		digit := n % 10
-		result = string(rune(digit+'0')) + result
+		digits = append([]rune{rune('0' + digit)}, digits...)
 		n /= 10
 	}
-
-	if neg {
-		result = "-" + result
-	}
-
-	return result
+	return string(digits)
 }
 
-func main() {
-	Doop()
+func Atoi(s string) int {
+	var number int
+	sign := 1
+
+	for idx, char := range s {
+		if char == '-' && idx == 0 {
+			sign = -1
+		} else if char == '+' && idx == 0 {
+			sign = 1
+		} else if char >= '0' && char <= '9' {
+			number = number*10 + int(char-'0')
+		} else {
+			return 0
+		}
+	}
+	return number * sign
 }
