@@ -11,7 +11,7 @@ In this repository, we will explore different Go programming exercises to improv
  To clone the repository in your machine, following this command :
 
  ```
- git clone https://github.com/bernotieno/Practice.git
+ git clone https://learn.zone01kisumu.ke/git/bernaotieno/go-practice.git
  ```
 
  After cloning, open and navigate the repository using the following command :
@@ -49,7 +49,7 @@ Run the program inside:
 
 ## Author
 
-[Bernad Okumu](https://github.com/bernotieno/Practice.git)
+[Bernad Okumu](https://learn.zone01kisumu.ke/git/bernaotieno/go-practice.git)
 
 
 
