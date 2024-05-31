@@ -1,20 +1,27 @@
-// The Compare function is a simple Go function that compares two strings and prints a message based on their comparison
-
 package main
 
 import "fmt"
 
-func Compare(a, b string) {
-	// Check if strings a and b are equal
-	if len(a) == len(b) {
-		fmt.Println("equal strings")
-	} else if len(a) > len(b) {
-		fmt.Println("first longer than second")
-	} else if len(a) < len(b) {
-		fmt.Println("second is longer than first")
+func Compare(a, b string) int {
+	for i := 0; i < len(a) && i < len(b); i++ {
+		if a[i] < b[i] {
+			return -1
+		} else if a[i] > b[i] {
+			return 1
+		}
 	}
+
+	if len(a) < len(b) {
+		return -1
+	} else if len(a) > len(b) {
+		return 1
+	}
+
+	return 0
 }
 
 func main() {
-	Compare("hello", "beautifully")
+	fmt.Println(Compare("Hello!", "Hello!"))
+	fmt.Println(Compare("Salut!", "lut!"))
+	fmt.Println(Compare("Ola!", "Ol"))
 }
