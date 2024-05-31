@@ -30,20 +30,14 @@ func main() {
 	case "/":
 		if value2 == 0 {
 			word := "No division by 0"
-			for _, c := range word {
-				z01.PrintRune(c)
-			}
-			z01.PrintRune('\n')
+			Print(word)
 			return
 		}
 		result = value1 / value2
 	case "%":
 		if value2 == 0 {
 			word := "No modulo by 0"
-			for _, c := range word {
-				z01.PrintRune(c)
-			}
-			z01.PrintRune('\n')
+			Print(word)
 			return
 		}
 		result = value1 % value2
@@ -51,8 +45,12 @@ func main() {
 		return
 	}
 	r := Itoa(int(result))
-	for _, c := range r {
-		z01.PrintRune(c)
+	Print(r)
+}
+
+func Print(str string) {
+	for _, char := range str {
+		z01.PrintRune(char)
 	}
 	z01.PrintRune('\n')
 }
