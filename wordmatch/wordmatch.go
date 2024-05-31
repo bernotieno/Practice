@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func containWord(first, second string) bool {
 	j := 0
@@ -20,5 +23,10 @@ func WordMatch(first, second string) string {
 }
 
 func main() {
-	fmt.Println(WordMatch("hello", "djdhndedkdldjdldhos"))
+	if len(os.Args) != 3 {
+		return
+	}
+	str1 := os.Args[1]
+	str2 := os.Args[2]
+	fmt.Println(WordMatch(str1, str2))
 }
