@@ -70,3 +70,10 @@ func Itoa(n int) string {
 	}
 	return string(digits)
 }
+
+/*func Gcd(a, b int) int {
+	if a != 0 {
+		a, b = b, a%b
+	}
+	return a
+}*/
