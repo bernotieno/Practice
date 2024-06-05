@@ -22,6 +22,6 @@ func main() {
 	fmt.Println(isPowerof2(newArg))
 }
 
-func isPowerof2(newArg int) bool {
-	return newArg%2 == 0
+func isPowerof2(n int) bool {
+	return n > 0 && (n&(n-1) == 0)
 }
