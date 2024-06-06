@@ -30,8 +30,9 @@ func pigLatin(s string) (result string) {
 	for i, char := range s {
 		if i != 0 && checkVowel(char) {
 			v := s[i:]
-			s = s[:i]
+			s := s[:i]
 			result = v + s + "ay"
+			break
 		}
 	}
 
