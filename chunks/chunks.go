@@ -1,12 +1,14 @@
 package main
 
-import (
-	"github.com/01-edu/z01"
-)
+import "fmt"
 
 // The ChunkSlice function is designed to divide a given slice of integers into smaller chunks of a specified size and print these chunks.
 func ChunkSlice(slice []int, chunkSize int) {
 	if chunkSize <= 0 {
+		fmt.Println()
+		return
+	}
+	if len(slice) == 0 {
 		return
 	}
 	var chunks [][]int
@@ -20,51 +22,7 @@ func ChunkSlice(slice []int, chunkSize int) {
 		chunks = append(chunks, slice[i:end])
 	}
 
-	Printit(chunks)
-}
-
-func Printit(chunkies [][]int) {
-	z01.PrintRune('[')
-	for c, chunk := range chunkies {
-		z01.PrintRune('[')
-		for i, num := range chunk {
-			if i > 0 {
-				z01.PrintRune(' ')
-			}
-			numString := Itoa(num)
-			for _, r := range numString {
-				z01.PrintRune(r)
-			}
-		}
-		z01.PrintRune(']')
-		if c < len(chunkies)-1 {
-			z01.PrintRune(' ')
-		}
-	}
-	z01.PrintRune(']')
-	z01.PrintRune('\n')
-}
-
-func Itoa(nb int) string {
-	if nb == 0 {
-		return "0"
-	}
-	isNeg := false
-	if nb < 0 {
-		isNeg = true
-		nb = -nb
-	}
-	var result []rune
-	for nb > 0 {
-		digit := nb % 10
-		result = append([]rune{rune(digit + '0')}, result...)
-		nb /= 10
-	}
-
-	if isNeg {
-		result = append([]rune{'-'}, result...)
-	}
-	return string(result)
+	fmt.Println(chunks)
 }
 
 func main() {
