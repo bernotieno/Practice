@@ -8,9 +8,6 @@ func ChunkSlice(slice []int, chunkSize int) {
 		fmt.Println()
 		return
 	}
-	if len(slice) == 0 {
-		return
-	}
 	var chunks [][]int
 
 	for i := 0; i < len(slice); i += chunkSize {
@@ -26,5 +23,9 @@ func ChunkSlice(slice []int, chunkSize int) {
 }
 
 func main() {
-	ChunkSlice([]int{24, 23, 23, 2, 42, 23, 2, 432, 43, 2, 4, 2223, 42, 4, 243}, 3)
+	ChunkSlice([]int{}, 10)
+	ChunkSlice([]int{0, 1, 2, 3, 4, 5, 6, 7}, 0)
+	ChunkSlice([]int{0, 1, 2, 3, 4, 5, 6, 7}, 3)
+	ChunkSlice([]int{0, 1, 2, 3, 4, 5, 6, 7}, 5)
+	ChunkSlice([]int{0, 1, 2, 3, 4, 5, 6, 7}, 4)
 }
