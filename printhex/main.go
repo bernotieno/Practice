@@ -6,29 +6,25 @@ import (
 	"strconv"
 )
 
-func printhex(n int) string {
-	hex := "0123456789abcdef"
-	mod := []int{}
-	result := ""
-
-	for i := n; i > 0; i /= 16 {
-		mod = append(mod, i%16)
+func main() {
+	if len(os.Args) == 2 {
+		n, err := strconv.Atoi(os.Args[1])
+		if err != nil {
+			fmt.Println("ERROR")
+			return
+		}
+		res := printHex(n, "0123456789abcdef")
+		fmt.Println(res)
 	}
-
-	for j := len(mod) - 1; j >= 0; j-- {
-		index := mod[j]
-		result += string(hex[index])
-	}
-	return result
 }
 
-func main() {
-	if len(os.Args) != 2 {
-		return
+func printHex(num int, base string) string {
+	result := ""
+
+	for num > 0 {
+		rem := num % len(base)
+		result = string(base[rem]) + result
+		num /= len(base)
 	}
-	num, err := strconv.Atoi(os.Args[1])
-	if err != nil {
-		fmt.Println("ERROR")
-	}
-	fmt.Println(printhex(num))
+	return result
 }
