@@ -41,7 +41,7 @@ func pigLatin(s string) (result string) {
 
 // function to check for vowels
 func checkVowel(s rune) bool {
-	return s == 'a' || s == 'e' || s == 'i' || s == 'o' || s == 'u'
+	return s == 'a' || s == 'e' || s == 'i' || s == 'o' || s == 'u' || s == 'A' || s == 'E' || s == 'I' || s == 'O' || s == 'U'
 }
 
 func main() {
