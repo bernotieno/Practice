@@ -5,44 +5,50 @@ import (
 	"os"
 )
 
-func rostring(str string) string {
-	var words []string
-	var word string
-	var result string
-
-	// Split the input string into words
-	for _, char := range str {
-		if char != ' ' {
-			word += string(char)
-		} else if word != "" {
-			words = append(words, word)
-			word = ""
+func split(str, sep string) []string {
+	var result []string
+	start := 0
+	for i := 0; i+len(sep) <= len(str); i++ {
+		if str[i:i+len(sep)] == sep {
+			if start < i {
+				result = append(result, str[start:i])
+			}
+			start = i + len(sep)
 		}
 	}
-	if word != "" {
-		words = append(words, word)
-	}
-
-	// Handle the case where there might be no words
-	if len(words) == 0 {
-		return ""
-	}
-
-	// Rotate the words
-	words = append(words[1:], words[0])
-
-	// Construct the result string without extra space
-	for i, wor := range words {
-		if i == len(words)-1 {
-			result += wor
-		} else {
-			result += wor + " "
-		}
+	if start < len(str) {
+		result = append(result, str[start:])
 	}
 	return result
 }
 
+func rot(slice []string) []string {
+	rotate := make([]string, len(slice))
+	for range slice {
+		rotate = append(slice[1:], slice[0])
+	}
+	return rotate
+}
+
+func join(slice []string) string {
+	var final string
+	for i, word := range slice {
+		final += word
+		if i < len(slice)-1 {
+			final += " "
+		}
+	}
+	return final
+}
+
 func main() {
-	input := os.Args[1]
-	fmt.Println(rostring(input))
+	if len(os.Args) != 2 || os.Args[1] == "" {
+		return
+	}
+	args := os.Args[1]
+
+	splitted := split(args, " ")
+	rotated := rot(splitted)
+	joined := join(rotated)
+	fmt.Println(joined)
 }
