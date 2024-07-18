@@ -1,24 +1,42 @@
 ## gcd
 ### Instructions
-Write a program that takes two string representing two strictly positive integers that fit in an int.
+Write a function that takes two uint representing two strictly positive integers and returns their greatest common divisor. If any of the input numbers is 0, the function should return 0.
 
-The program displays their greatest common divisor followed by a newline ('\n').
+In mathematics, the greatest common divisor (GCD) of two or more integers, which are not all zero, is the largest positive integer that divides each of the integers.
 
-If the number of arguments is different from 2, the program displays nothing.
+### Expected function
+```
+func Gcd(a, b uint) uint {
 
-All arguments tested will be positive int values.
+}
+```
 
 ### Usage
+Here is a possible program to test your function:
+
 ```
-$ go run . 42 10 | cat -e
-2$
-$ go run . 42 12
-6
-$ go run . 14 77
-7
-$ go run . 17 3
-1
+package main
+
+import (
+	"fmt"
+	"piscine"
+)
+
+func main() {
+	fmt.Println(piscine.Gcd(42, 10))
+	fmt.Println(piscine.Gcd(42, 12))
+	fmt.Println(piscine.Gcd(14, 77))
+	fmt.Println(piscine.Gcd(17, 3))
+}
+```
+
+And its output :
+
+```
 $ go run .
-$ go run . 50 12 4
+2
+6
+7
+1
 $
 ```
