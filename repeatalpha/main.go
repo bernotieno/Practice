@@ -12,9 +12,14 @@ func main() {
 	}
 
 	args := os.Args[1]
+	final := repeatAlpha(args)
+	printer(final)
+}
+
+func repeatAlpha(str string) string {
 	finalStr := ""
 
-	for _, char := range args {
+	for _, char := range str {
 		if char >= 'a' && char <= 'z' {
 			index := int(char - 'a')
 			for i := 0; i <= index; i++ {
@@ -29,7 +34,7 @@ func main() {
 			finalStr += string(char)
 		}
 	}
-	printer(finalStr)
+	return finalStr
 }
 
 func printer(str string) {
