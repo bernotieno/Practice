@@ -12,8 +12,7 @@ func CamelToSnakeCase(s string) string {
 
 	var result string
 
-	for i := 0; i < len(s); i++ {
-		char := s[i]
+	for i, char := range s {
 		// Check if the current character is an uppercase letter
 		if char >= 'A' && char <= 'Z' {
 			// If previous character is a lowercase letter, add an underscore
