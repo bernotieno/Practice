@@ -10,18 +10,34 @@ func CamelToSnakeCase(s string) string {
 		return ""
 	}
 
-	var result string
+	isCamelCase := true
 
-	for i, char := range s {
-		// Check if the current character is an uppercase letter
-		if char >= 'A' && char <= 'Z' {
-			// If previous character is a lowercase letter, add an underscore
-			if i > 0 && s[i-1] >= 'a' && s[i-1] <= 'z' {
+	// Check if the string is valid camelCase
+	for i, ch := range s {
+		if ch >= 'A' && ch <= 'Z' {
+			if i > 0 && s[i-1] >= 'A' && s[i-1] <= 'Z' {
+				isCamelCase = false
+			}
+		} else if (ch < 'a' || ch > 'z') && (ch < 'A' || ch > 'Z') {
+			isCamelCase = false
+		}
+	}
+
+	if !isCamelCase || (s[len(s)-1] >= 'A' && s[len(s)-1] <= 'Z') {
+		return s
+	}
+
+	// Convert to snake_case
+	result := ""
+	for i, ch := range s {
+		if ch >= 'A' && ch <= 'Z' {
+			if i > 0 {
 				result += "_"
 			}
+			result += string(ch)
+		} else {
+			result += string(ch)
 		}
-		// Add the current character to the result
-		result += string(char)
 	}
 
 	return result
