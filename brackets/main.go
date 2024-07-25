@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func correctBracket(str string) bool {
+func correctBracket(str string) string {
 	stack := []rune{}
 
 	validB := map[rune]rune{
@@ -19,12 +19,15 @@ func correctBracket(str string) bool {
 			stack = append(stack, char)
 		case ')', ']', '}':
 			if len(stack) == 0 || stack[len(stack)-1] != validB[char] {
-				return false
+				return "Error"
 			}
 			stack = stack[:len(stack)-1]
 		}
 	}
-	return len(stack) == 0
+	if len(stack) == 0 {
+		return "OK"
+	}
+	return "Error"
 }
 
 func main() {
@@ -32,12 +35,7 @@ func main() {
 		return
 	}
 
-	args := os.Args[1:]
-	for _, words := range args {
-		if correctBracket(words) || words == "" {
-			fmt.Println("OK")
-		} else {
-			fmt.Println("ERROR")
-		}
+	for _, args := range os.Args[1:] {
+		fmt.Println(correctBracket(args))
 	}
 }
