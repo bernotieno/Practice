@@ -8,52 +8,32 @@ func printstr(str string) {
 	}
 }
 
-func hex(str string) string {
-	hex := "0123456789abcdef"
-	var result string
-
-	if str == "" {
-		return "00"
-	}
-
-	for _, char := range str {
-		for char > 0 {
-			remainder := int(char) % 16
-
-			result = string(hex[remainder]) + result
-			char /= 16
-		}
-	}
-	return result
+func hex(b byte) string {
+	hexDigits := "0123456789abcdef"
+	return string(hexDigits[b>>4]) + string(hexDigits[b&0x0f])
 }
 
 func PrintMemory(arr [10]byte) {
 	for i, b := range arr {
-		// byte 0
-		if b == '\x00' {
-			printstr("00")
-		}
+		// Print each byte as two hexadecimal digits
+		printstr(hex(b))
 
-		// fmt.Printf("%02x", b)
-		printstr(hex(string(b)))
-
-		if (i+1)%4 == 0 {
+		if (i+1)%4 == 0 || i == len(arr)-1 {
 			z01.PrintRune('\n')
-		} else if i != len(arr)-1 {
+		} else {
 			z01.PrintRune(' ')
 		}
-
 	}
-	printstr("\n")
 
 	for _, b := range arr {
-		if b >= 32 && b <= 126 {
+		if b > 32 && b <= 126 {
 			printstr(string(b))
 		} else {
 			printstr(".")
 		}
 	}
-	printstr("\n")
+
+	z01.PrintRune('\n')
 }
 
 func main() {
