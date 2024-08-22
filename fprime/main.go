@@ -23,9 +23,10 @@ func main() {
 	}
 
 	for i, factor := range factors {
-		for _, n := range Itoa(factor) {
-			z01.PrintRune(n)
-		}
+		printDigits(factor)
+		// for _, n := range Itoa(factor) {
+		// 	z01.PrintRune(n)
+		// }
 		if i < len(factors)-1 {
 			z01.PrintRune('*')
 		}
@@ -45,21 +46,11 @@ func primeFactors(n int) []int {
 	return factors
 }
 
-func Itoa(n int) string {
-	if n == 0 {
-		return "0"
+func printDigits(n int) {
+	if n < 10 {
+		z01.PrintRune('0' + rune(n))
+		return
 	}
-
-	if n < 0 {
-		z01.PrintRune('-')
-		n = -n
-	}
-
-	var digits []rune
-	for n > 0 {
-		digit := n % 10
-		digits = append([]rune{rune('0' + digit)}, digits...)
-		n /= 10
-	}
-	return string(digits)
+	printDigits(n / 10)
+	z01.PrintRune('0' + rune(n%10))
 }
