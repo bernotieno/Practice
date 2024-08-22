@@ -11,7 +11,7 @@ func HashCode(dec string) string {
 
 	for i, char := range dec {
 		newChar := (int(char) + size) % 127
-		if newChar < 33 {
+		if newChar < 33 || newChar > 126 {
 			newChar += 33
 		}
 		hashed[i] = rune(newChar)
