@@ -5,37 +5,20 @@ import (
 	"os"
 )
 
-func pigLatin(s string) (result string) {
-	// handle wordswith no vowels
-	check := false
-	for _, char := range s {
-		if checkVowel(char) {
-			check = true
-		}
-		if check {
-			break
-		}
-
-	}
-	if !check {
-		result = ("No vowels")
-		return result
-	}
-	// handle words that start with vowels
-	if checkVowel(rune(s[0])) {
-		result = s + "ay"
-		return result
-	}
-	// handle words that have vowels in the middle
+func piglatin(s string) string {
+	result := ""
 	for i, char := range s {
-		if i != 0 && checkVowel(char) {
-			v := s[i:]
-			s := s[:i]
-			result = v + s + "ay"
-			break
+		if i == 0 && checkVowel(char) {
+			result = s + "ay"
+			return result
+		} else if i != 0 && checkVowel(char) {
+			before := s[:i]
+			after := s[i:]
+			result = after + before + "ay"
+			return result
 		}
 	}
-
+	result = "No vowels"
 	return result
 }
 
@@ -49,5 +32,5 @@ func main() {
 		return
 	}
 	args := os.Args[1]
-	fmt.Println(pigLatin(args))
+	fmt.Println(piglatin(args))
 }
