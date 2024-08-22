@@ -12,31 +12,18 @@ func FoldInt(f func(int, int) int, a []int, n int) {
 		tol += value
 	}
 	result := f(tol, n)
-	for _, char := range Itoa(result) {
-		z01.PrintRune(char)
-	}
+	printDigits(result)
 	z01.PrintRune('\n')
 }
 
-func Itoa(nb int) string {
-	if nb == 0 {
-		return "0"
+func printDigits(n int) {
+	if n < 10 {
+		z01.PrintRune('0' + rune(n))
+		return
 	}
-	isNeg := false
-	if nb < 0 {
-		isNeg = true
-		nb = -nb
-	}
-	var res []byte
-	for nb > 0 {
-		digit := nb % 10
-		res = append([]byte{byte('0' + digit)}, res...)
-		nb /= 10
-	}
-	if isNeg {
-		res = append([]byte{'-'}, res...)
-	}
-	return string(res)
+
+	printDigits(n / 10)
+	z01.PrintRune('0' + rune(n%10))
 }
 
 func Add(a, b int) int {
